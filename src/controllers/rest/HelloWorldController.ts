@@ -8,3 +8,14 @@ export class HelloWorldController {
     return "hello";
   }
 }
+
+//listar clientes
+@Controller("/clientes")
+export class ClientesController {
+  @Get("/")
+  listarclientes() :string[]{
+    let clientes = ['juan', ' oscar', 'edwin', 'gabriel']
+    
+    return clientes;
+  }
+}
