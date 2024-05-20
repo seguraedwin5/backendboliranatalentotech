@@ -19,7 +19,7 @@ import * as pages from "./controllers/pages/index";
     returnsCoercedValues: true
   },
   mount: {
-    "/rest": [
+    "/api": [
       ...Object.values(rest)
     ],
     "/": [
