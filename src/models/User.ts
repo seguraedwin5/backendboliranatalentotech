@@ -1,6 +1,6 @@
-import { Injectable } from "@tsed/di";
-import { Auto, ExcludeIndexes, Model, ObjectID  } from "@tsed/mongoose";  
-import { Email, MinLength, Property, Required , } from "@tsed/schema";
+
+import { Auto, Model, ObjectID, Unique  } from "@tsed/mongoose";  
+import { Description, Email, MinLength, Property, Required , } from "@tsed/schema";
 
 
 
@@ -8,10 +8,10 @@ import { Email, MinLength, Property, Required , } from "@tsed/schema";
 
 export class User{
   
-    @ExcludeIndexes(true)
+    @Property()
     @Auto(true)
-    @ObjectID()
-    _id : string
+    @ObjectID("id")
+    _id:string
 
     @Required()
     name:string
