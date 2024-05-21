@@ -10,7 +10,7 @@ export class JugadoresService{
     private jugadorModel : MongooseModel<Jugador>;
 
     listJugadores():Promise<Jugador[]>{
-        return this.jugadorModel.find({});
+        return this.jugadorModel.find({})
     }
     
     addJugador(jugador:Jugador){

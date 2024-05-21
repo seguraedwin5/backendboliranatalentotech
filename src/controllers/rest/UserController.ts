@@ -2,7 +2,7 @@ import { Controller, Inject,  } from "@tsed/di";
 import { BodyParams } from "@tsed/platform-params";
 import { Post,  } from "@tsed/schema";
 import { User, UserLogin } from "../../models";
-import {  MongooseModel, MongooseModels } from "@tsed/mongoose";
+import {  MongooseModel } from "@tsed/mongoose";
 import { AuthService } from "../../services/AuthService";
 import { AccessData } from "../../models/AccessData";
 
@@ -21,10 +21,11 @@ export class UserController{
     }
     //metodos
     @Post("/register")
-    async register(@BodyParams('user') user:User):Promise<User>{
+    async register(@BodyParams() user:User):Promise<User>{
         let newuser = {...user, password:this.authservice.encriptarClave(user.password)}
+        console.log(newuser);
         const model = new this.userModel(newuser);
-        const id =await model.save();
+        await model.save();
         return model.id;
     }
 
