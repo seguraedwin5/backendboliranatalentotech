@@ -1,5 +1,5 @@
 import { Controller, Inject,  } from "@tsed/di";
-import { BodyParams } from "@tsed/platform-params";
+import { BodyParams, Context } from "@tsed/platform-params";
 import { Post,  } from "@tsed/schema";
 import { User, UserLogin } from "../../models";
 import {  MongooseModel } from "@tsed/mongoose";
@@ -21,7 +21,7 @@ export class UserController{
     }
     //metodos
     @Post("/register")
-    async register(@BodyParams() user:User):Promise<User>{
+    async register( @BodyParams() user:User):Promise<User>{
         let newuser = {...user, password:this.authservice.encriptarClave(user.password)}
         console.log(newuser);
         const model = new this.userModel(newuser);
@@ -30,10 +30,11 @@ export class UserController{
     }
 
     @Post("/login")
-    async login(@BodyParams() userlogin:UserLogin):Promise<AccessData>{
+    async login(@Context() ctx:Context, @BodyParams() userlogin:UserLogin):Promise<AccessData>{
         
         let userfind = await this.userModel.findOne({email:userlogin.email}).exec();
         var token = this.authservice.generarToken(userlogin.email,userlogin.password);
+        ctx.response.cookie('token',token, {httpOnly:true, expires: new Date("2024-05-23")})
         return {
             token : token,
             data: {

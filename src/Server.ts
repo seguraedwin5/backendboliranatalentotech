@@ -8,6 +8,11 @@ import "@tsed/mongoose";
 import {config} from "./config/index";
 import * as rest from "./controllers/rest/index";
 import * as pages from "./controllers/pages/index";
+import cookieParser from "cookie-parser";
+import cors from 'cors'
+import compress from 'compression'
+import methodOverride from 'method-override'
+
 
 @Configuration({
   ...config,
@@ -33,10 +38,11 @@ import * as pages from "./controllers/pages/index";
     }
   ],
   middlewares: [
-    "cors",
-    "cookie-parser",
-    "compression",
-    "method-override",
+    cors(),
+    cookieParser(),
+    compress(),
+    methodOverride(),
+
     "json-parser",
     { use: "urlencoded-parser", options: { extended: true }}
   ],
