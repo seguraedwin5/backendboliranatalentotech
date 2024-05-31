@@ -1,10 +1,14 @@
-import { Controller } from "@tsed/di";
+import { Controller, Inject } from "@tsed/di";
+import { MongooseModel } from "@tsed/mongoose";
 import { Get } from "@tsed/schema";
+import { Reserva } from "../../models";
 
-@Controller("/reservas")
-export class ReservaBoliranaController{
-    @Get("/")
-    listreservas(){
-        return "list reservas"
-    }
+@Controller({ path: "/reservas" })
+export class ReservaController {
+  @Inject(Reserva) private reservaModel: MongooseModel<Reserva>;
+
+  @Get("/")
+  async listReserva(): Promise<Reserva[]> {
+    return this.reservaModel.find({});
+  }
 }
