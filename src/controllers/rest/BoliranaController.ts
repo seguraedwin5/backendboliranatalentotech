@@ -4,12 +4,12 @@ import { Get } from "@tsed/schema";
 import { Bolirana, Rol } from "../../models";
 
 @Controller({ path: "/boliranas" })
-export class BoliranaController{
-  @Inject(Bolirana) private boliranaModel: MongooseModel<Bolirana>
+export class BoliranaController {
+  @Inject(Bolirana) private boliranaModel: MongooseModel<Bolirana>;
 
-  @Get("/")
+  @Get("/") /* listamos las  boliranas disponibles para su alquiler */
   async listBoliranas(): Promise<Bolirana[]> {
-    console.log('consultando bolirandas!!');
+    console.log("consultando bolirandas!!");
     return this.boliranaModel.find({});
   }
 }

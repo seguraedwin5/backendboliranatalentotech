@@ -10,18 +10,15 @@ import { Res } from "@tsed/common";
 export class PagoController {
   @Inject(Pago) private pagoModel: MongooseModel<Pago>;
 
-  @Post("/")
-  async registrarPago(
+  @Post("/") /* Agregamos un pago a la base de datos */ async registrarPago(
     @BodyParams() pagoData: Pago,
     @Res() res: Response
   ): Promise<Response> {
     const nuevoPago = new this.pagoModel(pagoData);
     await nuevoPago.save();
-
     return res.status(201).json({ message: "Pago registrado correctamente" });
   }
-
-  @Get("/")
+  @Get("/") /* listamos los pagos desde la base de datos */
   async listPagos(): Promise<Pago[]> {
     return this.pagoModel.find({});
   }
