@@ -1,11 +1,14 @@
-import { Controller } from "@tsed/di";
+import { Controller, Inject } from "@tsed/di";
+import { MongooseModel } from "@tsed/mongoose";
 import { Get } from "@tsed/schema";
+import { Rol } from "../../models";
 
-@Controller("/roles")
-export class RolController{
+@Controller({ path: "/roles" })
+export class RolController {
+  @Inject(Rol) private rolModel: MongooseModel<Rol>
 
-    @Get("/")
-    listroles(){
-        return "lista roles"
-    }
+  @Get("/")
+  async listRoles(): Promise<Rol[]> {
+    return this.rolModel.find({});
+  }
 }
