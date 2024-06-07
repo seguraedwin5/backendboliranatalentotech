@@ -5,7 +5,7 @@ import { AES } from "crypto-ts";
 @Service()
 export class AuthService{
 
-    private KEY = "mysecretekey"
+    private KEY = process.env.JWT_KEY || ""
 
     generarToken(usuario:string, clave:string){
        const token = jwt.sign({usuario:usuario, clave:clave},this.KEY, {subject:usuario, expiresIn:"1h"});
@@ -22,6 +22,11 @@ export class AuthService{
 
     encriptarClave(password:string){
         let clave_encriptada = AES.encrypt(password,"key");
+        console.log(clave_encriptada)
         return clave_encriptada.toString();
+    }
+
+    findOne(id:any){
+        console.log(id)
     }
 }

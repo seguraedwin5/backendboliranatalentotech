@@ -1,12 +1,17 @@
 
-import { Model } from "@tsed/mongoose";
-import { Email, Property } from "@tsed/schema";
+import { Email, Format, Property } from "@tsed/schema";
 
-@Model()
+
 export class UserLogin{
-    @Email()
+    @Property()
+    id:string;
+
+    @Property()
+    @Format("email")
     email:string
 
     @Property()
     password:string
+
+    
 }
