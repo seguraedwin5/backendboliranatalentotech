@@ -83,9 +83,7 @@ export class Server {
 
   $beforeRoutesInit(){
     this.app
-    .use(cors({origin:[
-      "*",
-    ]}))
+    .use(cors())
       .use(cookieParser())
       .use(methodOverride())
       .use(bodyParser.json())
