@@ -25,4 +25,6 @@ export class User {
   @Required()
   @Property()
   password: string;
+
+  role:string;
 }

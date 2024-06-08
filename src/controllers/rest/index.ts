@@ -4,6 +4,7 @@
 
 export * from "./BoliranaController";
 export * from "./CampeonatoController";
+export * from "./CombosController";
 export * from "./EquipoController";
 export * from "./HelloWorldController";
 export * from "./JugadorController";

@@ -2,7 +2,8 @@
   "directory": [
     "./src/controllers/rest",
     "./src/controllers/pages",
-    "./src/models"
+    "./src/models",
+    "./src/middlewares"
   ],
   "exclude": ["__mock__", "__mocks__", ".spec.ts"],
   "delete": true
